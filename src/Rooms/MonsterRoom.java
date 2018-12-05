@@ -11,9 +11,11 @@ public class MonsterRoom extends Room{
         super(x,y);
     }
 
-
     @Override
     public String toString() {
+        if(inside){
+            return "[X]";
+        }
         return "[M]";
     }
 
@@ -58,7 +60,6 @@ public class MonsterRoom extends Room{
 
             System.out.println("Type your attack move");
             if(input.equals("punch")){
-                damage = 4;
                 health = health.substring(0, health.length()-damage);
                 System.out.println(monster);
                 System.out.println(health);
