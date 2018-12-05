@@ -4,7 +4,8 @@ import People.Person;
 
 public class Room {
     Person occupant;
-    int xLoc,yLoc;
+    int xLoc, yLoc;
+    boolean inside = false;
 
     public Room(int x, int y)
     {
@@ -12,9 +13,13 @@ public class Room {
         yLoc = y;
     }
 
-    @Override
     public String toString() {
-        return "[?]";
+        if(inside){
+            return "[X]";
+        }
+        else {
+            return "[?]";
+        }
     }
 
     /**
@@ -27,6 +32,7 @@ public class Room {
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
+        inside = true;
     }
 
     /**
@@ -36,6 +42,7 @@ public class Room {
     public void leaveRoom(Person x)
     {
         occupant = null;
+        inside = false;
     }
 
 }
