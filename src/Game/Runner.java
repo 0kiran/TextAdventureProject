@@ -17,25 +17,7 @@ public class Runner {
         Room[][] map = new Room[5][5];
         Board board = new Board(map);
 
-        //Fill the map with normal rooms
-        for (int x = 0; x<map.length; x++)
-        {
-            for (int y = 0; y < map[x].length; y++)
-            {
-                map[x][y] = new Room(x,y);
-            }
-        }
-
-        //Create a random winning room.
-        int x = (int)(Math.random()*map.length);
-        int y = (int)(Math.random()*map.length);
-        map[x][y] = new WinningRoom(x, y);
-
-        //Create a random winning room.
-        int x2 = (int)(Math.random()*map.length);
-        int y2 = (int)(Math.random()*map.length);
-        map[x2][y2] = new MonsterRoom(x2, y2);
-
+        board.build();
 
         //Setup player 1 and the input scanner
         Person player1 = new Person("FirstName", "FamilyName", 0,0);
