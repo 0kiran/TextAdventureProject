@@ -22,6 +22,7 @@ public class MonsterRoom extends Room{
     public void enterRoom(Person x) {
 
         occupant = x;
+        // ADD random monster generator
         String monster = "                                              ____\n" +
                 "   ___                                      .-~. /_\"-._\n" +
                 "  `-._~-.                                  / /_ \"~o\\  :Y\n" +
@@ -48,47 +49,51 @@ public class MonsterRoom extends Room{
         System.out.println("You found the monster! Prepare to fight.");
         System.out.println(monster);
 
-        String health = "\nHEALTH: =============================================";
+        String health = "\nHEALTH: ";
+        String healthbar = "  =============================================";
         int damage = 4;
+        int dealt = 0;
 
         Runner.gameOff();
         Scanner in2 = new Scanner(System.in);
-        System.out.println(health);
-        System.out.println("Type your attack move");
-        String input = in2.nextLine();
-        while(!input.equals("I give up") && health.length() > 8){
+        System.out.println(health + healthbar);
+
+        while(dealt < 45){
 
             System.out.println("Type your attack move");
+            String input = in2.nextLine();
+
             if(input.equals("punch")){
-                health = health.substring(0, health.length()-damage);
-                System.out.println(monster);
-                System.out.println(health);
-                System.out.println("You did "+damage+" damage!");
+                damage = 4;
+                dealt += damage;
             }
             else if(input.equals("kick")){
                 damage = 6;
-                health = health.substring(0, health.length()-damage);
-                System.out.println(monster);
-                System.out.println(health);
-                System.out.println("You did "+damage+" damage!");
+                dealt += damage;
             }
             else if(input.equals("insult")){
                 damage = 12;
-                System.out.println("Super effective!");
-                health = health.substring(0, health.length()-damage);
-                System.out.println(monster);
-                System.out.println(health);
-                System.out.println("You did "+damage+" damage!");
+                dealt += damage;
             }
             else{
+                damage = 0;
                 System.out.println("That isn't a move...");
             }
+            if(healthbar.length()-damage > 0) {
+                healthbar = healthbar.substring(0, healthbar.length() - damage);
+                System.out.println(monster);
+                System.out.println(health + healthbar);
+                if (damage > 10) {
+                    System.out.println("Super effective!");
+                }
+                System.out.println("You did " + damage + " damage!");
+            }
 
-            System.out.println("Type your attack move");
-            input = in2.nextLine();
         }
 
-        System.out.println("You beat it!");
+        System.out.println("========================");
+        System.out.println("\nYOU BEAT THE MONSTER!\n");
+        System.out.println("========================");
         Runner.gameOn = true;
 
 

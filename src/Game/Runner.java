@@ -20,9 +20,14 @@ public class Runner {
         board.build();
 
         //Setup player 1 and the input scanner
-        Person player1 = new Person("FirstName", "FamilyName", 0,0);
-        map[0][0].enterRoom(player1);
         Scanner in = new Scanner(System.in);
+        System.out.println("Welcome to Dungeon Brawl! What is your name?");
+        String name = in.nextLine();
+        Person player1 = new Person(name, 0, 0,10);
+        System.out.print("Hello, " + player1.getName());
+        map[0][0].enterRoom(player1);
+
+
         while(gameOn)
         {
             board.print();

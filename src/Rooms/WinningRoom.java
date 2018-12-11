@@ -26,7 +26,7 @@ public class WinningRoom extends Room
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
-        System.out.println("You found the Winning Room! Ten points for Gryffindor.");
+        System.out.println("You found the Winning Room!");
         Runner.gameOff();
     }
 
