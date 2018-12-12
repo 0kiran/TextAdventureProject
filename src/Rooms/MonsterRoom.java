@@ -23,27 +23,7 @@ public class MonsterRoom extends Room{
 
         occupant = x;
         // ADD random monster generator
-        String monster = "                                              ____\n" +
-                "   ___                                      .-~. /_\"-._\n" +
-                "  `-._~-.                                  / /_ \"~o\\  :Y\n" +
-                "      \\  \\                                / : \\~x.  ` ')\n" +
-                "       ]  Y                              /  |  Y< ~-.__j\n" +
-                "      /   !                        _.--~T : l  l<  /.-~\n" +
-                "     /   /                 ____.--~ .   ` l /~\\ \\<|Y\n" +
-                "    /   /             .-~~\"        /| .    ',-~\\ \\L|\n" +
-                "   /   /             /     .^   \\ Y~Y \\.^>/l_   \"--'\n" +
-                "  /   Y           .-\"(  .  l__  j_j l_/ /~_.-~    .\n" +
-                " Y    l          /    \\  )    ~~~.\" / `/\"~ / \\.__/l_\n" +
-                " |     \\     _.-\"      ~-{__     l  :  l._Z~-.___.--~\n" +
-                " |      ~---~           /   ~~\"---\\_  ' __[>\n" +
-                " l  .                _.^   ___     _>-y~\n" +
-                "  \\  \\     .      .-~   .-~   ~>--\"  /\n" +
-                "   \\  ~---\"            /     ./  _.-'\n" +
-                "    \"-.,_____.,_  _.--~\\     _.-~\n" +
-                "                ~~     (   _}\n" +
-                "                        `. ~(\n" +
-                "                          )  \\\n" +
-                "                         /,`--'~\\--'";
+        String monster = "";
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
         System.out.println("You found the monster! Prepare to fight.");
