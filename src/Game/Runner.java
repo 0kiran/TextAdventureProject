@@ -24,15 +24,16 @@ public class Runner {
         System.out.println("Welcome to Dungeon Brawl! What is your name?");
         String name = in.nextLine();
         Person player1 = new Person(name, 0, 0,10);
-        System.out.print("Hello, " + player1.getName());
+        System.out.println("Hello, " + player1.getName()+".");
         map[0][0].enterRoom(player1);
 
 
         while(gameOn)
         {
             board.print();
-            System.out.println("Where would you like to move? (Choose N, S, E, W)");
             System.out.println(player1);
+            System.out.println("Where would you like to move? (Choose N, S, E, W)");
+
             String move = in.nextLine();
             if(validMove(move, player1, map))
             {

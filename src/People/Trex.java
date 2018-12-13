@@ -34,6 +34,6 @@ public class Trex extends Monster {
     }
 
     public String toString() {
-        return getImage() + "\n NAME:" + getName()+ "\n HEALTH:" + getHealth() + "\nSTRENGTH:"+getStrength();
+        return getImage() + "\nNAME:" + getName()+  "\nSTRENGTH:"+getStrength();
     }
 }

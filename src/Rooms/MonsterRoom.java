@@ -1,7 +1,9 @@
 package Rooms;
 
 import Game.Runner;
+import People.Monster;
 import People.Person;
+import People.Trex;
 
 import java.util.Scanner;
 
@@ -23,22 +25,25 @@ public class MonsterRoom extends Room{
 
         occupant = x;
         // ADD random monster generator
-        String monster = "";
+        Monster monster = new Trex(30,"Brave T-rex",100);
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
         System.out.println("You found the monster! Prepare to fight.");
         System.out.println(monster);
 
         String health = "\nHEALTH: ";
-        String healthbar = "  =============================================";
-        int damage = 4;
+        String healthbar = "  ";
+        for(int i = 0; i < monster.getHealth(); i++){
+            healthbar += "=";
+        }
+        int damage;
         int dealt = 0;
 
         Runner.gameOff();
         Scanner in2 = new Scanner(System.in);
         System.out.println(health + healthbar);
 
-        while(dealt < 45){
+        while(dealt < healthbar.length()){
 
             System.out.println("Type your attack move");
             String input = in2.nextLine();
