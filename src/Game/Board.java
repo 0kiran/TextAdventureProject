@@ -11,6 +11,7 @@ public class Board {
         this.map = map;
     }
 
+
     public void build(){
 
         for (int x = 0; x < map.length; x++)

@@ -14,17 +14,33 @@ public class Runner {
 
     public static void main(String[] args)
     {
+
         Room[][] map = new Room[5][5];
         Board board = new Board(map);
-
-        board.build();
-
         //Setup player 1 and the input scanner
         Scanner in = new Scanner(System.in);
         System.out.println("Welcome to Dungeon Brawl! What is your name?");
         String name = in.nextLine();
         Person player1 = new Person(name, 0, 0,10);
         System.out.println("Hello, " + player1.getName()+".");
+        System.out.println("How big is your dungeon?");
+        System.out.println("HEIGHT:");
+        String height = in.nextLine();
+        System.out.println("WIDTH:");
+        String width = in.nextLine();
+        try{
+            int heightint = Integer.parseInt(height);
+            int widthint = Integer.parseInt(width);
+            map = new Room[heightint][widthint];
+            board = new Board(map);
+
+
+            board.build();
+        }catch (NumberFormatException ex) {
+            System.out.println("Those don't seem to be numbers...");
+            System.out.print("How about 5 by 5?");
+            board.build();
+        }
         map[0][0].enterRoom(player1);
 
 
