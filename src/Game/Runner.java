@@ -11,58 +11,83 @@ public class Runner {
 
 
     public static boolean gameOn = true;
-
+    public static int mrcount;
     public static void main(String[] args)
     {
 
-        Room[][] map = new Room[5][5];
-        Board board = new Board(map);
-        //Setup player 1 and the input scanner
-        Scanner in = new Scanner(System.in);
-        System.out.println("Welcome to Dungeon Brawl! What is your name?");
-        String name = in.nextLine();
-        Person player1 = new Person(name, 0, 0,10);
-        System.out.println("Hello, " + player1.getName()+".");
-        System.out.println("How big is your dungeon?");
-        System.out.println("HEIGHT:");
-        String height = in.nextLine();
-        System.out.println("WIDTH:");
-        String width = in.nextLine();
-        try{
-            int heightint = Integer.parseInt(height);
-            int widthint = Integer.parseInt(width);
-            map = new Room[heightint][widthint];
-            board = new Board(map);
+            Room[][] map = new Room[5][5];
+            Board board = new Board(map);
+            //Setup player 1 and the input scanner
+            Scanner in = new Scanner(System.in);
+            System.out.println("Welcome to Dungeon Brawl! (The game looks best if you set your terminal as the full window) \nWhat is your name?");
+            String name = in.nextLine();
+            Person player1 = new Person(name, 0, 0,100,0,1);
+            System.out.println("Hello, " + player1.getName()+".");
+            System.out.println("How big is your dungeon? (min: 2x2)");
+            System.out.println("HEIGHT:");
+            String height = in.nextLine();
+            System.out.println("WIDTH:");
+            String width = in.nextLine();
+            try{
+                int heightint = Integer.parseInt(height);
+                int widthint = Integer.parseInt(width);
+                map = new Room[heightint][widthint];
+                board = new Board(map);
 
 
-            board.build();
-        }catch (NumberFormatException ex) {
-            System.out.println("Those don't seem to be numbers...");
-            System.out.print("How about 5 by 5?");
-            board.build();
-        }
-        map[0][0].enterRoom(player1);
+                board.build();
+            }catch (NumberFormatException ex) {
+                System.out.println("Those don't seem to be numbers...");
+                System.out.print("How about 5 by 5?");
+                board.build();
+            }
+            System.out.println("In each of the rooms marked with an 'M' you will find a monster! \nSpit, punch, kick, and gnaw your way through each monster room and make it to the finish! \n(hint: they have very low self-esteem, do massive damage with the move insult!)\n");
+            map[0][0].enterRoom(player1);
 
+            mrcount = board.mrcount;
 
-        while(gameOn)
-        {
-            board.print();
-            System.out.println(player1);
-            System.out.println("Where would you like to move? (Choose N, S, E, W)");
-
-            String move = in.nextLine();
-            if(validMove(move, player1, map))
+            while(gameOn)
             {
-                System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
+                board.print();
+                System.out.println(player1);
+                for (int i = 0; i < player1.getInventory().length; i++) {
+                    if(player1.getInventory()[i] != null && player1.getInventory()[i].equals("Meat")){
+                        System.out.println("Where would you like to move? (Choose N, S, E, W) or eat your meat with C");
+                        break;
+                    }
+                    else if(i == player1.getInventory().length-1){
+                        System.out.println("Where would you like to move? (Choose N, S, E, W)");
+                    }
+                }
+
+
+
+                String move = in.nextLine();
+                if(validMove(move, player1, map))
+                {
+                    System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
+
+                }
+                if(move.equals("C") || move.equals("c")){
+                    for (int i = 0; i < player1.getInventory().length; i++) {
+                        if(player1.getInventory()[i] != null && player1.getInventory()[i].equals("Meat")){
+                            player1.health += 20;
+                            player1.getInventory()[i] = null;
+                            System.out.println("You ate your meat.");
+                            break;
+                        }
+                        else if(i == player1.getInventory().length-1){
+                            System.out.println("Please choose a valid move.");
+                        }
+                    }
+                }
+                else {
+                    System.out.println("Please choose a valid move.");
+                }
+
 
             }
-            else {
-                System.out.println("Please choose a valid move.");
-            }
-
-
-        }
-        in.close();
+            in.close();
     }
 
     /**

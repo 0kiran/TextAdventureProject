@@ -44,6 +44,7 @@ public class Room {
         occupant = null;
         inside = false;
     }
+    
 
 }
 

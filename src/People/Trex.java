@@ -5,10 +5,6 @@ public class Trex extends Monster {
         super(health, name, strength);
     }
 
-    @Override
-    public void attack() {
-    }
-
     public String getImage() {
         return "                                              ____\n" +
                 "   ___                                      .-~. /_\"-._\n" +
@@ -33,7 +29,4 @@ public class Trex extends Monster {
                 "                         /,`--'~\\--'";
     }
 
-    public String toString() {
-        return getImage() + "\nNAME:" + getName()+  "\nSTRENGTH:"+getStrength();
-    }
 }
